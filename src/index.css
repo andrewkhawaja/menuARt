@@ -1,0 +1,360 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light Mode Colors */
+  --background-color: #f4f4f4;
+  --text-color: #333333;
+  --primary-color: #ffffff;
+  --accent-color: #ff9800;
+  --secondary-accent-color: #00bfa5;
+  --card-background: #ffffff;
+  --border-color: #e0e0e0;
+  --success-color: #4caf50;
+  --danger-color: #f44336;
+  --warning-color: #ffc107;
+
+  font-family: "Orbitron", sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Dark Mode Colors */
+[data-theme="dark"] {
+  --background-color: #1e1e1e;
+  --text-color: #e0e0e0;
+  --primary-color: #333333;
+  --accent-color: #ff9800;
+  --secondary-accent-color: #00bfa5;
+  --card-background: #2a2a2a;
+  --border-color: #444444;
+  --success-color: #4caf50;
+  --danger-color: #f44336;
+  --warning-color: #ffc107;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Ensure AR view is responsive */
+.ar-view-container {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 75%; /* 4:3 aspect ratio */
+  overflow: hidden;
+}
+
+.ar-view-container > * {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Improve touch targets for mobile */
+button,
+a.button,
+input[type="submit"] {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve form elements on mobile */
+input,
+select,
+textarea {
+  font-size: 16px; /* Prevents zoom on focus in iOS */
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--primary-color);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-color);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--secondary-accent-color);
+}
+
+code {
+  font-family: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+}
+
+/* Basic component styling */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem; /* Increased padding */
+}
+
+.card {
+  background-color: var(--card-background);
+  border-radius: 1.5rem; /* More rounded corners */
+  padding: 2rem; /* Increased padding */
+  margin-bottom: 1.5rem; /* Increased margin */
+  border: 1px solid var(--border-color);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5); /* Stronger shadow */
+}
+
+.btn {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem; /* Rounded corners for buttons */
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Added transform for hover */
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: var(--secondary-accent-color); /* Change color on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+input[type="text"],
+textarea,
+select {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  border: 1px solid var(--border-color);
+  border-radius: 0.5rem; /* Rounded corners for inputs */
+  padding: 0.75rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+input[type="text"]:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 8px rgba(0, 170, 255, 0.5); /* Glow effect */
+}
+
+/* Specific styles for recommendation messages */
+.ai-message {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+}
+
+.user-message {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+/* Animation Classes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-out;
+}
+
+.animate-slide-in {
+  animation: slideIn 0.5s ease-out;
+}
+
+.animate-bounce {
+  animation: bounce 1s infinite;
+}
+
+/* Interactive hover effects */
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+.hover-scale {
+  transition: transform 0.3s ease;
+}
+
+.hover-scale:hover {
+  transform: scale(1.05);
+}
+
+/* Smooth transitions for all interactive elements */
+button,
+a,
+input,
+select,
+textarea {
+  transition: all 0.3s ease;
+}
+
+/* Improved focus styles */
+:focus-visible {
+  outline: 3px solid var(--accent-color);
+  outline-offset: 2px;
+  transition: outline-offset 0.2s ease;
+}
+
+/* Improved active states */
+button:active,
+a:active {
+  transform: scale(0.98);
+}
+
+/* Improved hover states for cards */
+.card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Improved button hover states */
+.btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.6s ease, height 0.6s ease;
+}
+
+.btn:hover::after {
+  width: 300%;
+  height: 300%;
+}
+
+/* Improved link hover states */
+a {
+  position: relative;
+  text-decoration: none;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-color);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Improved form element focus states */
+input:focus,
+select:focus,
+textarea:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Improved mobile menu animations */
+.mobile-menu-enter {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.mobile-menu-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+
+.mobile-menu-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-menu-exit-active {
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 300ms, transform 300ms;
+}

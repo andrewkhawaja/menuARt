@@ -1,0 +1,6 @@
+flask==2.3.3
+firebase-admin==6.8.0
+python-dotenv==1.1.0
+flask-cors==6.0.0
+werkzeug==2.3.7
+langchain-openai
